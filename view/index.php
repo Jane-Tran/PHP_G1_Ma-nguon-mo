@@ -7,4 +7,6 @@ echo "Xin chào, tôi là index.php";
 ?>
 
 <?php
-include_once("footer.php"); ?>
+include_once("footer.php"); 
+?>
+

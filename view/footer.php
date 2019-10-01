@@ -59,6 +59,9 @@
 <script src="../js/demo/datatables-demo.js"></script>
 <script src="../js/demo/chart-area-demo.js"></script>
 
+<!-- Xử lý sự kiện Add-->
+<!--script src="../../vendor/jquery/event.js"></script-->
+
 </body>
 
 </html>

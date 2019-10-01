@@ -6,6 +6,8 @@ include_once("nav.php");
 include_once("../model/entity/student.php");
 $maSinhVien = $ho = $ten = $ngaySinh = $email = "";
 //var_dump($_SERVER);
+var_dump($_REQUEST["txtMaSinhVien"]);
+var_dump($_POST["txtTen"]);
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $maSinhVien = $_REQUEST["txtMaSinhVien"];
     $ho = $_REQUEST["txtHo"];
