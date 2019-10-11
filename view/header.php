@@ -1,3 +1,17 @@
+ <?php
+if ($_SERVER['REQUEST_METHOD']=='GET') {
+    // if (isset($_GET['rs']) && $_GET['rs']=='success') {
+    //     echo "<script>alert('Cập nhật thành công !');</script>";
+    // }
+
+    if(isset($_GET['iddelete'])) {
+        echo "<script>alert('Xóa thành công !');</script>";
+    }
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +40,7 @@
     <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"-->
 
-    
+  
 
 </head>
 
