@@ -1,6 +1,7 @@
-<?php 
-class Product {
-    
+<?php
+class Product
+{
+
     var $pCode;
     var $pName;
     var $categories;
@@ -16,35 +17,34 @@ class Product {
         $this->image = $_image;
         $this->price = $_price;
         $this->info = $_info;
-        
     }
 
     //Hàm kết nối MySQL, đóng kết nối sau mỗi lần sử dụng !
     static function connect()
     {
-        $con = new mysqli("localhost","root","","ecommerce");
+        $con = new mysqli("localhost", "root", "", "ecommerce");
         $con->set_charset("utf-8");
-        if($con->connect_error) die("Kết nối thất bại --> ".$con->connect_error);
+        if ($con->connect_error) die("Kết nối thất bại --> " . $con->connect_error);
         return $con;
-
     }
 
     //Hàm lấy danh sách toàn bộ sản phẩm 
-    static function GetListProductsFromDB(){
+    static function GetListProductsFromDB()
+    {
         $con = Product::connect();
         $sql = "SELECT * FROM products ";
         $result = $con->query($sql);
         $listp = array();
-        if($result->num_rows>0){
-            while($row = $result->fetch_assoc()){
-                 array_push($listp, new Product(
-                     $row["pCode"],
-                     $row["pName"],
-                     $row["categories"],
-                     $row["image"],
-                     $row["price"],
-                     $row["info"]
-                 ));   
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($listp, new Product(
+                    $row["pCode"],
+                    $row["pName"],
+                    $row["categories"],
+                    $row["image"],
+                    $row["price"],
+                    $row["info"]
+                ));
             }
         }
         $con->close();
@@ -52,19 +52,43 @@ class Product {
     }
 
     //Hàm lấy các loại mặt hàng hiện có 
-    static function GetListCategoriesFromDB(){
+    static function GetListCategoriesFromDB()
+    {
         $con = Product::connect();
         $sql = "SELECT DISTINCT categories FROM products ";
         $result = $con->query($sql);
         $listc = array();
-        if($result->num_rows>0){
-            while($row = $result->fetch_assoc()){
-                 array_push($listc, $row["categories"] );
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($listc, $row["categories"]);
             }
         }
         $con->close();
         return $listc;
     }
-}
 
-?>
+    /**
+     * Hàm trả vể 1 đối tượng sản phẩm 
+     * @param $pCode  là mã sản phẩm 
+     */
+    static function GetProductByCode($pCode)
+    {
+        $con = Product::connect();
+        $sql = "SELECT * FROM products WHERE pCode= '$pCode'";
+        $result = $con->query($sql);
+        if ($result->num_rows == 1) {
+            $row = $result->fetch_assoc();
+            $pDetail = new Product(
+                $row["pCode"],
+                $row["pName"],
+                $row["categories"],
+                $row["image"],
+                $row["price"],
+                $row["info"]
+            );
+
+            return $pDetail;
+        }
+        $con->close();
+    }
+}

@@ -3,7 +3,9 @@ include("head-title-links.php");
 include_once("../models/product.php");
 $listp = Product::GetListProductsFromDB();
 $listc = Product::GetListCategoriesFromDB();
-var_dump($listc);
+
+if (isset($_GET["pCode"]))
+	var_dump($_GET["pCode"]);
 ?>
 
 <body class="animsition">
@@ -536,12 +538,12 @@ var_dump($listc);
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
 						All Products
 					</button>
-					<?php foreach($listc as $value){?>
+					<?php foreach ($listc as $value) { ?>
 						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".<?php echo $value; ?>">
 							<?php echo ucwords($value); ?>
 						</button>
-					<?php }?>
-					
+					<?php } ?>
+
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
@@ -575,20 +577,20 @@ var_dump($listc);
 
 			<div class="row isotope-grid">
 				<?php foreach ($listp as $key => $value) { ?>
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php echo $value->categories;?>">
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php echo $value->categories; ?>">
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-pic hov-img0 label-new" data-label="New">
-								<img src="../public/images/<?php echo $value->image;?>" alt="IMG-PRODUCT">
-								
-								<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+								<img src="../public/images/<?php echo $value->image; ?>" alt="IMG-PRODUCT">
+
+								<a class="block2-btn flex-c-m stext-103 cl2 size-103 bg0 bor2 hov-btn1 p-lr-15 trans-04" onclick="showDetail('<?php echo $value->pCode ?>');">
 									Quick View
 								</a>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.php" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="product-detail.php?pCode=<?php echo $value->pCode ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										<?php echo $value->pName; ?>
 									</a>
 
@@ -788,6 +790,7 @@ var_dump($listc);
 		</div>
 	</div>
 
+
 	<!--===============================================================================================-->
 	<script src="../public/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -798,6 +801,21 @@ var_dump($listc);
 	<!--===============================================================================================-->
 	<script src="../public/vendor/select2/select2.min.js"></script>
 	<script>
+		//Hàm gọi Ajax để hiển thị nhanh
+		function showDetail(pCode) {
+			// alert(pCode);
+			var xmlhttp = new XMLHttpRequest();
+			// xmlhttp.onreadystatechange = function() {
+			// 	if (this.readyState == 4 && this.status == 200) {
+			// 		document.getElementById("modal-detail").innerHTML = this.responseText;
+			// 	}
+			// }
+			xmlhttp.open("GET", "../controllers/quickView.php?pCode=" + pCode, true);
+			xmlhttp.send();
+
+			$('.js-modal1').addClass('show-modal1');
+		}
+
 		$(".js-select2").each(function() {
 			$(this).select2({
 				minimumResultsForSearch: 20,

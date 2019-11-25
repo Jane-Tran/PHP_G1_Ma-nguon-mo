@@ -1,8 +1,13 @@
 <?php
-    include("head-title-links.php");
+include("head-title-links.php");
+include_once("../models/product.php");
+if (isset($_GET["pCode"]))
+	$pDetail = Product::GetProductByCode($_GET["pCode"]);
+
 ?>
+
 <body class="animsition">
-	
+
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -10,11 +15,11 @@
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
-                    <div class="left-top-bar"></div>
+					<div class="left-top-bar"></div>
 					<div class="right-top-bar flex-w h-full">
 						<div class="flex-c-m trans-04 p-lr-25">
-                            Free shipping for standard order over $100
-                        </div>
+							Free shipping for standard order over $100
+						</div>
 
 						<a href="#" class="flex-c-m trans-04 p-lr-25">
 							My Account
@@ -25,8 +30,8 @@
 
 			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
-					
-					<!-- Logo desktop -->		
+
+					<!-- Logo desktop -->
 					<a href="index.php" class="logo">
 						<img src="../public/images/icons/logo-01.png" alt="IMG-LOGO">
 					</a>
@@ -63,7 +68,7 @@
 								<a href="contact.html">Contact</a>
 							</li>
 						</ul>
-					</div>	
+					</div>
 
 					<!-- Icon header -->
 					<div class="wrap-icon-header flex-w flex-r-m">
@@ -80,12 +85,12 @@
 						</a>
 					</div>
 				</nav>
-			</div>	
+			</div>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
-			<!-- Logo moblie -->		
+			<!-- Logo moblie -->
 			<div class="logo-mobile">
 				<a href="index.php"><img src="../public/images/icons/logo-01.png" alt="IMG-LOGO"></a>
 			</div>
@@ -210,7 +215,7 @@
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
-			
+
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12">
@@ -261,7 +266,7 @@
 						</div>
 					</li>
 				</ul>
-				
+
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
 						Total: $75.00
@@ -291,16 +296,16 @@
 			</a>
 
 			<a href="product.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Men
+				<?php echo ucwords($pDetail->categories) ?>
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a>
 
 			<span class="stext-109 cl4">
-				Lightweight Jacket
+				<?php echo $pDetail->pName ?>
 			</span>
 		</div>
 	</div>
-		
+
 
 	<!-- Product Detail -->
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
@@ -313,31 +318,31 @@
 							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="../public/images/product-detail-01.jpg">
+								<div class="item-slick3 label-new" data-label="Anh 1" data-thumb="../public/images/<?php echo $pDetail->image ?>">
 									<div class="wrap-pic-w pos-relative">
-										<img src="../public/images/product-detail-01.jpg" alt="IMG-PRODUCT">
+										<img src="../public/images/<?php echo $pDetail->image ?>" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../public/images/product-detail-01.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../public/images/<?php echo $pDetail->image ?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="../public/images/product-detail-02.jpg">
+								<div class="item-slick3 label-new" data-label="Anh 2" data-thumb="../public/images/<?php echo $pDetail->image ?>">
 									<div class="wrap-pic-w pos-relative">
-										<img src="../public/images/product-detail-02.jpg" alt="IMG-PRODUCT">
+										<img src="../public/images/<?php echo $pDetail->image ?>" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../public/images/product-detail-02.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../public/images/<?php echo $pDetail->image ?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
 
-								<div class="item-slick3" data-thumb="../public/images/product-detail-03.jpg">
+								<div class="item-slick3 label-new" data-label="Anh 3" data-thumb="../public/images/<?php echo $pDetail->image ?>">
 									<div class="wrap-pic-w pos-relative">
-										<img src="../public/images/product-detail-03.jpg" alt="IMG-PRODUCT">
+										<img src="../public/images/<?php echo $pDetail->image ?>" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../public/images/product-detail-03.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="../public/images/<?php echo $pDetail->image ?>">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -346,21 +351,21 @@
 						</div>
 					</div>
 				</div>
-					
+
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							Lightweight Jacket
+							<?php echo $pDetail->pName ?>
 						</h4>
 
 						<span class="mtext-106 cl2">
-							$58.79
+							$<?php echo $pDetail->price ?>
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
-							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+							<?php echo $pDetail->info ?>
 						</p>
-						
+
 						<!--  -->
 						<div class="p-t-33">
 							<div class="flex-w flex-r-m p-b-10">
@@ -404,7 +409,7 @@
 							<div class="flex-w flex-r-m p-b-10">
 								<div class="size-204 flex-w flex-m respon6-next">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
-										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m" onclick="">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
@@ -415,11 +420,11 @@
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<a href="../controllers/addToCart.php?pCode=<?php echo $pDetail->pCode ?>&quantity=<?php echo '1' ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
-									</button>
+									</a>
 								</div>
-							</div>	
+							</div>
 						</div>
 
 						<!--  -->
@@ -565,7 +570,7 @@
 												</p>
 											</div>
 										</div>
-										
+
 										<!-- Add review -->
 										<form class="w-full">
 											<h5 class="mtext-108 cl2 p-b-7">
@@ -819,7 +824,7 @@
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
 									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										Vintage Inspired Classic 
+										Vintage Inspired Classic
 									</a>
 
 									<span class="stext-105 cl3">
@@ -904,10 +909,10 @@
 			</div>
 		</div>
 	</section>
-		
+
 
 	<!-- Footer -->
-    <?php include("footer.php") ?>
+	<?php include("footer.php") ?>
 
 
 	<!-- Back to top -->
@@ -968,7 +973,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-md-6 col-lg-5 p-b-30">
 						<div class="p-r-50 p-t-5 p-lr-0-lg">
 							<h4 class="mtext-105 cl2 js-name-detail p-b-14">
@@ -982,7 +987,7 @@
 							<p class="stext-102 cl3 p-t-23">
 								Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
 							</p>
-							
+
 							<!--  -->
 							<div class="p-t-33">
 								<div class="flex-w flex-r-m p-b-10">
@@ -1041,7 +1046,7 @@
 											Add to cart
 										</button>
 									</div>
-								</div>	
+								</div>
 							</div>
 
 							<!--  -->
@@ -1071,60 +1076,60 @@
 		</div>
 	</div>
 
-<!--===============================================================================================-->	
+	<!--===============================================================================================-->
 	<script src="../public/vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/animsition/js/animsition.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/bootstrap/js/popper.js"></script>
 	<script src="../public/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/select2/select2.min.js"></script>
 	<script>
-		$(".js-select2").each(function(){
+		$(".js-select2").each(function() {
 			$(this).select2({
 				minimumResultsForSearch: 20,
 				dropdownParent: $(this).next('.dropDownSelect2')
 			});
 		})
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/daterangepicker/moment.min.js"></script>
 	<script src="../public/vendor/daterangepicker/daterangepicker.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/slick/slick.min.js"></script>
 	<script src="../public/js/slick-custom.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/parallax100/parallax100.js"></script>
 	<script>
-        $('.parallax100').parallax100();
+		$('.parallax100').parallax100();
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
 	<script>
 		$('.gallery-lb').each(function() { // the containers for all your galleries
 			$(this).magnificPopup({
-		        delegate: 'a', // the selector for gallery item
-		        type: 'image',
-		        gallery: {
-		        	enabled:true
-		        },
-		        mainClass: 'mfp-fade'
-		    });
+				delegate: 'a', // the selector for gallery item
+				type: 'image',
+				gallery: {
+					enabled: true
+				},
+				mainClass: 'mfp-fade'
+			});
 		});
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/isotope/isotope.pkgd.min.js"></script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e){
+		$('.js-addwish-b2, .js-addwish-detail').on('click', function(e) {
 			e.preventDefault();
 		});
 
-		$('.js-addwish-b2').each(function(){
+		$('.js-addwish-b2').each(function() {
 			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function(){
+			$(this).on('click', function() {
 				swal(nameProduct, "is added to wishlist !", "success");
 
 				$(this).addClass('js-addedwish-b2');
@@ -1132,10 +1137,10 @@
 			});
 		});
 
-		$('.js-addwish-detail').each(function(){
+		$('.js-addwish-detail').each(function() {
 			var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
 
-			$(this).on('click', function(){
+			$(this).on('click', function() {
 				swal(nameProduct, "is added to wishlist !", "success");
 
 				$(this).addClass('js-addedwish-detail');
@@ -1145,33 +1150,33 @@
 
 		/*---------------------------------------------*/
 
-		$('.js-addcart-detail').each(function(){
+		$('.js-addcart-detail').each(function() {
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function(){
+			$(this).on('click', function() {
 				swal(nameProduct, "is added to cart !", "success");
 			});
 		});
-	
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
-		$('.js-pscroll').each(function(){
-			$(this).css('position','relative');
-			$(this).css('overflow','hidden');
+		$('.js-pscroll').each(function() {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
 			var ps = new PerfectScrollbar(this, {
 				wheelSpeed: 1,
 				scrollingThreshold: 1000,
 				wheelPropagation: false,
 			});
 
-			$(window).on('resize', function(){
+			$(window).on('resize', function() {
 				ps.update();
 			})
 		});
 	</script>
-<!--===============================================================================================-->
+	<!--===============================================================================================-->
 	<script src="../public/js/main.js"></script>
 
 </body>
+
 </html>
