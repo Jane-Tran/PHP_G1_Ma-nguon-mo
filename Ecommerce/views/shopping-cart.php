@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include("./head-title-links.php");
 ?>
 
@@ -72,7 +73,8 @@
                             <i class="zmdi zmdi-search"></i>
                         </div>
 
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" 
+                            data-notify="<?php echo ( empty($_SESSION['cart'])? '0':count($_SESSION['cart']))?>">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
 
@@ -97,7 +99,8 @@
                     <i class="zmdi zmdi-search"></i>
                 </div>
 
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+                     data-notify="<?php echo ( empty($_SESSION['cart'])? '0':count($_SESSION['cart']))?>">
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
 
@@ -212,73 +215,49 @@
                 </div>
             </div>
 
-            <div class="header-cart-content flex-w js-pscroll">
-                <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="../public/images/item-cart-01.jpg" alt="IMG">
-                        </div>
+            <?php if(!empty($_SESSION["cart"])){ ?>
+				<div class="header-cart-content flex-w js-pscroll">
+					<ul class="header-cart-wrapitem w-full">
+						<?php $cart = $_SESSION["cart"];
+							$total = 0;
+							foreach($cart as $item) {?>
+								<li class="header-cart-item flex-w flex-t m-b-12">
+									<div class="header-cart-item-img">
+										<img src="../public/images/<?php echo $item["image"]?>" alt="IMG">
+									</div>
 
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                White Shirt Pleat
-                            </a>
+									<div class="header-cart-item-txt p-t-8">
+										<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+											<?php echo $item["pName"]?>
+										</a>
 
-                            <span class="header-cart-item-info">
-                                1 x $19.00
-                            </span>
-                        </div>
-                    </li>
+										<span class="header-cart-item-info">
+											<?php echo $item["quantity"]?> X $<?php echo $item["price"]?>
+										</span>
+									</div>
+								</li>
+						<?php $total = $total + $item["quantity"]*$item["price"]; }?>
+					</ul>
 
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="../public/images/item-cart-02.jpg" alt="IMG">
-                        </div>
+					<div class="w-full">
+						<div class="header-cart-total w-full p-tb-40">
+							Total: $<?php echo $total ?>
+						</div>
 
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Converse All Star
-                            </a>
+						<div class="header-cart-buttons flex-w w-full">
+							<a href="shopping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+								View Cart
+							</a>
 
-                            <span class="header-cart-item-info">
-                                1 x $39.00
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img">
-                            <img src="../public/images/item-cart-03.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                                Nixon Porter Leather
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                1 x $17.00
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Total: $75.00
-                    </div>
-
-                    <div class="header-cart-buttons flex-w w-full">
-                        <a href="shopping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            View Cart
-                        </a>
-
-                        <a href="shopping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            Check Out
-                        </a>
-                    </div>
-                </div>
-            </div>
+							<a href="shopping-cart.php" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+								Check Out
+							</a>
+						</div>
+					</div>
+				</div>
+			<?php }else{?>
+				<h2>Cart is empty !</h2>
+			<?php } ?>
         </div>
     </div>
 
@@ -313,54 +292,41 @@
                                     <th class="column-4">Quantity</th>
                                     <th class="column-5">Total</th>
                                 </tr>
-
-                                <tr class="table_row">
-                                    <td class="column-1">
-                                        <div class="how-itemcart1">
-                                            <img src="../public/images/item-cart-04.jpg" alt="IMG">
-                                        </div>
-                                    </td>
-                                    <td class="column-2">Fresh Strawberries</td>
-                                    <td class="column-3">$ 36.00</td>
-                                    <td class="column-4">
-                                        <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-minus"></i>
+                                <?php if(!empty($_SESSION["cart"])){ 
+						            $cart = $_SESSION["cart"];
+							        $total = 0;
+							        foreach($cart as $item) {?>
+								
+                                    <tr class="table_row">
+                                        <td class="column-1">
+                                            <div class="how-itemcart1">
+                                                <img src="../public/images/<?php echo $item["image"]?>" alt="IMG">
                                             </div>
+                                        </td>
+                                        <td class="column-2"><?php echo $item["pName"]?></td>
+                                        <td class="column-3">$ <?php echo $item["price"]?></td>
+                                        <td class="column-4">
+                                            <div class="wrap-num-product flex-w m-l-auto m-r-0">
+                                                <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+                                                    <i class="fs-16 zmdi zmdi-minus"></i>
+                                                </div>
 
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="1">
+                                                <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="<?php echo $item["quantity"]?>">
 
-                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-plus"></i>
+                                                <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+                                                    <i class="fs-16 zmdi zmdi-plus"></i>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="column-5">$ 36.00</td>
-                                </tr>
-
-                                <tr class="table_row">
-                                    <td class="column-1">
-                                        <div class="how-itemcart1">
-                                            <img src="../public/images/item-cart-05.jpg" alt="IMG">
-                                        </div>
-                                    </td>
-                                    <td class="column-2">Lightweight Jacket</td>
-                                    <td class="column-3">$ 16.00</td>
-                                    <td class="column-4">
-                                        <div class="wrap-num-product flex-w m-l-auto m-r-0">
-                                            <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-minus"></i>
-                                            </div>
-
-                                            <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product2" value="1">
-
-                                            <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-                                                <i class="fs-16 zmdi zmdi-plus"></i>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="column-5">$ 16.00</td>
-                                </tr>
+                                        </td>
+                                        <td class="column-5">$ <?php echo $item["quantity"]*$item["price"] ?></td>
+                                    </tr>
+						        <?php $total = $total + $item["quantity"]*$item["price"]; }?>
+					
+                                <?php }else{?>
+                                    <tr>
+                                        <h2>Cart is empty !</h2>
+                                    </tr>
+                                <?php } ?>
                             </table>
                         </div>
 
@@ -395,7 +361,7 @@
 
                             <div class="size-209">
                                 <span class="mtext-110 cl2">
-                                    $79.65
+                                    $<?php echo $total ?>
                                 </span>
                             </div>
                         </div>
@@ -453,7 +419,7 @@
 
                             <div class="size-209 p-t-1">
                                 <span class="mtext-110 cl2">
-                                    $79.65
+                                    $<?php echo $total ?>
                                 </span>
                             </div>
                         </div>
@@ -466,60 +432,5 @@
             </div>
         </div>
     </form>
-
-
-
-
     <!-- Footer -->
     <?php include("./footer.php") ?>
-
-
-    <!-- Back to top -->
-    <div class="btn-back-to-top" id="myBtn">
-        <span class="symbol-btn-back-to-top">
-            <i class="zmdi zmdi-chevron-up"></i>
-        </span>
-    </div>
-
-    <!--===============================================================================================-->
-    <script src="../public/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="../public/vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="../public/vendor/bootstrap/js/popper.js"></script>
-    <script src="../public/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="../public/vendor/select2/select2.min.js"></script>
-    <script>
-        $(".js-select2").each(function() {
-            $(this).select2({
-                minimumResultsForSearch: 20,
-                dropdownParent: $(this).next('.dropDownSelect2')
-            });
-        })
-    </script>
-    <!--===============================================================================================-->
-    <script src="../public/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="../public/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script>
-        $('.js-pscroll').each(function() {
-            $(this).css('position', 'relative');
-            $(this).css('overflow', 'hidden');
-            var ps = new PerfectScrollbar(this, {
-                wheelSpeed: 1,
-                scrollingThreshold: 1000,
-                wheelPropagation: false,
-            });
-
-            $(window).on('resize', function() {
-                ps.update();
-            })
-        });
-    </script>
-    <!--===============================================================================================-->
-    <script src="../public/js/main.js"></script>
-
-</body>
-
-</html>

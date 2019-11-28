@@ -1,0 +1,52 @@
+body{
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    font-family: 'Roboto',sans-serif;
+    background-position: center center;
+    background-image: url('https://mientay24h.site/wp-content/uploads/2018/11/hinh-nen-den-dep-24.jpg');
+}
+form{
+    position: relative;
+    background-color: #f3f3f3da;
+    border-radius:30%;
+   padding: 2rem 2.4rem;
+  
+}
+form img{
+    position: absolute;
+    top:0;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    max-width: 100%;
+}
+form h2{
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 3rem;
+    font-weight: 400;
+}
+form input{
+    display: block;
+    margin: 1rem 0;
+    padding: 10px 14px;
+    border: none;
+    outline: none;
+    border-radius:2rem;
+    font-size: 18px;
+}
+form button{
+    font-size: medium;
+    padding: 8px 16px;
+    display: block;
+    width: 60%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 2rem;
+    background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+    margin: 2rem 0 1rem 5rem;
+}

@@ -1,15 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+body{
+    font-family: 'Montserrat', sans-serif;
+}
 .navbar {
     background-color: #f6c346;
-}
-
-.container-fluid {
-    background: #f6c346;
+    opacity:0.98;
 }
 
 .navbar .navbar-brand {
     color: #2c2f38;
 }
-
+.navbar .navbar-brand div img{
+    margin: -4px 10px 0px 10px;
+}
 .navbar .navbar-brand:hover,
 .navbar .navbar-brand:focus {
     color: #ffffff;
@@ -38,7 +41,10 @@
 .navbar .navbar-nav .nav-link:not(.disabled):focus {
     color: #ffffff;
 }
-
+.navbar-toggler-icon{
+    background-image: url("../img/burger.svg");
+    
+}
 .navbar .navbar-nav .nav-item.active .nav-link,
 .navbar .navbar-nav .nav-item.active .nav-link:hover,
 .navbar .navbar-nav .nav-item.active .nav-link:focus,
@@ -75,6 +81,12 @@
     color: #ffffff;
 }
 
+.logo{
+    background: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 @media (max-width: 575px) {
     .navbar-expand-sm .navbar-nav .show .dropdown-menu .dropdown-item {
         color: #2c2f38;
@@ -89,6 +101,22 @@
         color: #ffffff;
         background-color: #d77328;
     }
+    .jumbotron{
+        height: 200px;
+        overflow: hidden;
+        margin-top: 30px;
+    }
+    .jumbotron .container #detail{
+        position: absolute;
+        margin: 50px;
+    }
+    .jumbotron .container #detail span{
+        color: #d77328;
+    }
+    .widgets .popular .detail{
+        margin: 20px;
+    }
+
 }
 
 @media (max-width: 767px) {
@@ -104,6 +132,9 @@
     .navbar-expand-md .navbar-nav .show .dropdown-menu .dropdown-item.active {
         color: #ffffff;
         background-color: #d77328;
+    }
+    .widgets .popular .detail{
+        margin: 20px;
     }
 }
 
@@ -137,6 +168,7 @@
         color: #ffffff;
         background-color: #d77328;
     }
+    
 }
 
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item {
@@ -151,4 +183,81 @@
 .navbar-expand .navbar-nav .show .dropdown-menu .dropdown-item.active {
     color: #ffffff;
     background-color: #d77328;
+}
+.jumbotron{
+    height: 200px;
+    overflow: hidden;
+}
+.jumbotron .container #detail{
+    position: absolute;
+    margin: 15px;
+}
+.jumbotron .container #detail span{
+    color: #d77328;
+}
+.popular {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius:15px;
+    box-shadow: 2px 2px 6px #2c2f38;
+    margin-bottom: 20px;
+}
+section .widgets{
+    margin-bottom: 20px;
+}
+.popular .detail{
+    margin-left: -20px;
+}
+.popular .detail p{
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+}
+.popular .detail a{
+    text-decoration: none;
+}
+.popular img{
+    width:100%;
+    margin-top: 10px;
+}
+.category{
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius:15px;
+    box-shadow: 2px 2px 6px #2c2f38;
+    margin-bottom: 20px;
+}
+.category ul li a{
+    text-decoration: none;
+}
+.post{
+    border: 1px solid #ccc;
+    
+
+}
+.post .post-date{
+    padding: 5px 10px 5px 10px;
+    text-align: center;
+    border-right: 1px solid #ccc;
+}
+.post .post-title{
+    padding: 20px;
+}
+.post .post-date .day{
+    font-size: 30px;
+    color:crimson;
+}
+.post .post-date .month{
+    font-size: 18px;
+    font-weight:600;
+}
+.post .post-date .year{
+    font-size: 18px;
+    font-weight: 100;
+}
+footer{
+    background: #2c2f38;
+    height: 70px;
+    color: aliceblue;
+    line-height: 70px;
+    letter-spacing: 0.75px;
 }

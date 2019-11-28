@@ -2,7 +2,7 @@
 (function ($) {
     "use strict";
 
-    /*[ Load page ]
+    /*[ Load page ] Các hiệu ứng khi load trang
     ===========================================================*/
     $(".animsition").animsition({
         inClass: 'fade-in',
@@ -24,7 +24,7 @@
         transition: function(url){ window.location.href = url; }
     });
     
-    /*[ Back to top ]
+    /*[ Back to top ] 
     ===========================================================*/
     var windowH = $(window).height()/2;
 
@@ -110,7 +110,7 @@
 
 
     /*==================================================================
-    [ Show / hide modal search ]*/
+            Xự kiện khi click vào nút tìm kiếm  */
     $('.js-show-modal-search').on('click', function(){
         $('.modal-search-header').addClass('show-modal-search');
         $(this).css('opacity','0');
