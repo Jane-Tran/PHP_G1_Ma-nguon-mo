@@ -22,6 +22,9 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.css" rel="stylesheet">
 
-  <script src="http://cdn.ckeditor.com/4.6.1/standard/ckeditor.js"></script>
+  <!-- <script src="http://cdn.ckeditor.com/4.13.0/full/ckeditor.js"></script> -->
+  <script src="public/ckeditor/ckeditor.js"></script>
+  <script src="public/ckfinder/ckfinder.js"></script>
+  
 
 </head>

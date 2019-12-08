@@ -3,8 +3,12 @@
     <i class="fas fa-angle-up"></i>
 </a>
 <script>
-     CKEDITOR.replace( 'editor1' );
-    
+    //  CKEDITOR.replace( 'editor1' );
+     CKEDITOR.replace( 'editor1', {
+	    filebrowserBrowseUrl: 'public/ckfinder/ckfinder.html',
+	    filebrowserUploadUrl: 'public/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files'
+    } );
+
  </script>
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>

@@ -7,7 +7,7 @@ $listp = Post::GetListPostFromDB();
 <body>
     <header class="container">
         <nav class="navbar navbar-expand-lg fixed-top">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <div class="row">
                     <div class="col-xs-3"><img class="logo" src="img/duckling.png" alt="logo" width="40px" /></div>
                     <div class="col-xs-9">Code - Life</div>
@@ -76,7 +76,8 @@ $listp = Post::GetListPostFromDB();
                                 <img src="" alt="Profile Picture">
                             </div> -->
                     <?php
-                    foreach ($listp as $value) {
+                    if($listp!=null){
+                        foreach ($listp as $value) {
                         ?>
                         <div class="card promoting-card narrower   ">
                             <img class="card-img-top" src="./upload/<?php echo $value->image ?>" alt="Card image cap">
@@ -91,7 +92,7 @@ $listp = Post::GetListPostFromDB();
                             </div>
                         </div>
                         <hr>
-                    <?php } ?>
+                    <?php } }?>
 
                 </div>
                 <div class="col-lg-4 col-md-12">
@@ -108,43 +109,23 @@ $listp = Post::GetListPostFromDB();
                         <div class="popular">
                             <h4>Popular Post</h4>
                             <hr>
-                            <div class="row">
-                                <div class="col-md-4 ">
-                                    <img src="./img/popular1.jpg" alt="popular1">
+                           <?php if($listp!=null){
+                                foreach ($listp as $value) {
+                                ?>
+                                <div class="row">
+                                    <div class="col-md-4 ">
+                                        <img src="./upload/<?php echo $value->image ?>" alt="popular1">
+                                    </div>
+                                    <div class="col-md-8  detail">
+                                        <a href="#">
+                                            <h4><?php echo $value->title ?></h4>
+                                        </a>
+                                        <p><i class="far fa-clock"></i> 10 May, 2020</p>
+                                    </div>
                                 </div>
-                                <div class="col-md-8  detail">
-                                    <a href="#">
-                                        <h4>This is heading for Post</h4>
-                                    </a>
-                                    <p><i class="far fa-clock"></i> 10 May, 2020</p>
-                                </div>
-                            </div>
+                                <hr>
+                            <?php } }?>
 
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="./img/popular1.jpg" alt="popular1">
-                                </div>
-                                <div class="col-md-8 detail">
-                                    <a href="#">
-                                        <h4>This is heading for Post</h4>
-                                    </a>
-                                    <p><i class="far fa-clock"></i> 10 May, 2020</p>
-                                </div>
-                            </div>
-
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <img src="./img/popular1.jpg" alt="popular1">
-                                </div>
-                                <div class="col-md-8 detail">
-                                    <a href="#">
-                                        <h4>This is heading for Post</h4>
-                                    </a>
-                                    <p><i class="far fa-clock"></i> 10 May, 2020</p>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="category">

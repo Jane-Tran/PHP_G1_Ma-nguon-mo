@@ -67,9 +67,9 @@ $listp = Post::GetListPostFromDBByAdmin();
                                                 <img src="upload/<?php echo $value->image?>" alt="image_post" width="80px" height="50px">
                                             </td>
                                             <?php if($value->published ) {?>
-                                                <td><i class="fas fa-check"></i></td>
+                                                <td id="check" ><i class="fas fa-check"></i></td>
                                             <?php }else{ ?>
-                                                <td><i class="far fa-eye-slash"></i></td>
+                                                <td id="check" ><i class="far fa-eye-slash"></i></td>
                                             <?php }?>
                                             <td>Dec 12, 2016</td>
                                             <td>

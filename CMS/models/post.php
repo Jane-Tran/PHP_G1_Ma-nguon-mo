@@ -128,8 +128,20 @@ class Post
     static function UpdatePost($id, $title, $content, $image, $tag,$published)
     {
         $con = Post::connect();
-        var_dump((string)$published);
         $sql = "UPDATE post SET title='$title', content='$content', image='$image', tag='$tag', published='$published'  WHERE id='$id'";
+        var_dump($sql);
+        $con->query($sql) or die("truy vấn lỗi :(  ?????".$con->error);
+        $con->close();
+    }
+     /**
+     * Hàm ẩn bài post
+     * 
+     */
+    static function hidePost($id)
+    {
+        $con = Post::connect();
+       
+        $sql = "UPDATE post SET  published='0'  WHERE id='$id'";
         var_dump($sql);
         $con->query($sql) or die("truy vấn lỗi :(  ?????".$con->error);
         $con->close();
