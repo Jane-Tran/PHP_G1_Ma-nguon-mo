@@ -220,14 +220,14 @@
 					<ul class="header-cart-wrapitem w-full">
 						<?php $cart = $_SESSION["cart"];
 							$total = 0;
-							foreach($cart as $item) {?>
+							foreach($cart as $pCode => $item) {?>
 								<li class="header-cart-item flex-w flex-t m-b-12">
 									<div class="header-cart-item-img">
 										<img src="../public/images/<?php echo $item["image"]?>" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt p-t-8">
-										<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+										<a href="product-detail.php?pCode=<?php echo $pCode ?>" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 											<?php echo $item["pName"]?>
 										</a>
 
@@ -278,13 +278,13 @@
 
 
     <!-- Shoping Cart -->
-    <form class="bg0 p-t-75 p-b-85">
+    <div class="bg0 p-t-75 p-b-85">
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
                     <div class="m-l-25 m-r--38 m-lr-0-xl">
                         <div class="wrap-table-shopping-cart">
-                            <table class="table-shopping-cart">
+                            <table class="table-shopping-cart" id="loadListCart">
                                 <tr class="table_head">
                                     <th class="column-1">Product</th>
                                     <th class="column-2"></th>
@@ -295,13 +295,15 @@
                                 <?php if(!empty($_SESSION["cart"])){ 
 						            $cart = $_SESSION["cart"];
 							        $total = 0;
-							        foreach($cart as $item) {?>
+							        foreach($cart as $pCode => $item) {?>
 								
                                     <tr class="table_row">
                                         <td class="column-1">
-                                            <div class="how-itemcart1">
-                                                <img src="../public/images/<?php echo $item["image"]?>" alt="IMG">
-                                            </div>
+                                            <div class="how-itemcart1"  >
+                                               <a href="javascript:void(0)">
+                                                   <img src="../public/images/<?php echo $item["image"]?>" alt="IMG"  onclick="deleteCart() ">
+                                                </a> 
+                                             </div>
                                         </td>
                                         <td class="column-2"><?php echo $item["pName"]?></td>
                                         <td class="column-3">$ <?php echo $item["price"]?></td>
@@ -311,7 +313,7 @@
                                                     <i class="fs-16 zmdi zmdi-minus"></i>
                                                 </div>
 
-                                                <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="<?php echo $item["quantity"]?>">
+                                                <input class="mtext-104 cl3 txt-center num-product" type="number" id="<?php echo $pCode?>" value="<?php echo $item["quantity"]?>">
 
                                                 <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                                     <i class="fs-16 zmdi zmdi-plus"></i>
@@ -339,8 +341,8 @@
                                 </div>
                             </div>
 
-                            <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-                                Update Cart
+                            <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10" >
+                                <a href="shopping-cart.php"> Update Cart </a>
                             </div>
                         </div>
                     </div>
@@ -431,6 +433,6 @@
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <!-- Footer -->
     <?php include("./footer.php") ?>

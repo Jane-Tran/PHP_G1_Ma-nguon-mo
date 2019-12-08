@@ -76,12 +76,20 @@ if (isset($_GET["pCode"]))
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
-
-						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" 
-							data-notify="<?php echo ( empty($_SESSION['cart'])? '0':count($_SESSION['cart']))?>">
-							<i class="zmdi zmdi-shopping-cart"></i>
+						<?php 
+							if(!empty($_SESSION["cart"])){
+								$cart = $_SESSION["cart"];
+								$total = 0;
+								foreach($cart as $item) {
+									$total += $item["quantity"]*$item["price"];
+								}
+							}
+						?>
+						<div id="qty"class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" 
+							data-notify="<?php echo ( empty($_SESSION['cart'])? '0':count($_SESSION['cart']))?>"> 
+							<i class="zmdi zmdi-shopping-cart"> </i>						
 						</div>
-
+						<p id="nav-total">$<?php echo $total?></p>
 						<a href="#" class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti" data-notify="0">
 							<i class="zmdi zmdi-favorite-outline"></i>
 						</a>
@@ -223,14 +231,14 @@ if (isset($_GET["pCode"]))
 					<ul class="header-cart-wrapitem w-full">
 						<?php $cart = $_SESSION["cart"];
 							$total = 0;
-							foreach($cart as $item) {?>
+							foreach($cart as $pCode=> $item) {?>
 								<li class="header-cart-item flex-w flex-t m-b-12">
 									<div class="header-cart-item-img">
 										<img src="../public/images/<?php echo $item["image"]?>" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt p-t-8">
-										<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+										<a href="product-detail.php?pCode=<?php echo $pCode ?>" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
 											<?php echo $item["pName"]?>
 										</a>
 
@@ -332,11 +340,11 @@ if (isset($_GET["pCode"]))
 
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
-						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
+						<h4 class="mtext-105 cl2 js-name-detail p-b-14 " id="<?php  echo $pDetail->pCode ?>">
 							<?php echo $pDetail->pName ?>
 						</h4>
 
-						<span class="mtext-106 cl2">
+						<span class="mtext-106 cl2 ">
 							$<?php echo $pDetail->price ?>
 						</span>
 
@@ -398,9 +406,9 @@ if (isset($_GET["pCode"]))
 										</div>
 									</div>
 
-									<a href="../controllers/addToCart.php?pCode=<?php echo $pDetail->pCode ?>&quantity=<?php echo '1' ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+									<button   class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 										Add to cart
-									</a>
+									</button>
 								</div>
 							</div>
 						</div>

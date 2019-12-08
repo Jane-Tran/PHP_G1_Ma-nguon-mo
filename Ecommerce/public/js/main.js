@@ -212,18 +212,47 @@
         $('.js-sidebar').removeClass('show-sidebar');
     });
 
-    /*==================================================================
+    /*=============Cập nhật giỏ hàng khi thay đổi số lượng==========================================
     [ +/- num product ]*/
-    $('.btn-num-product-down').on('click', function(){
-        var numProduct = Number($(this).next().val());
-        if(numProduct > 0) $(this).next().val(numProduct - 1);
-    });
 
-    $('.btn-num-product-up').on('click', function(){
-        var numProduct = Number($(this).prev().val());
-        $(this).prev().val(numProduct + 1);
-    });
+    $(document).ready(function(){
+        //Giảm số lượng 
+        $('.btn-num-product-down').on('click', function(){
+            //Tìm đến phần tử HTML kế tiếp và lấy giá trị
+            var numProduct = Number($(this).next().val());
 
+            //Nếu lớn hơn 0 thì giảm số lượng ngược lại thì nhận giá trị 0
+            if(numProduct > 0) $(this).next().val(numProduct - 1);
+            
+            //Tìm và lấy mã sản phẩm của sản phẩm cần thay đổi
+            var pCode = $(this).parent().find('.num-product').attr('id');
+
+            //Giá trị mà người dùng muốn thay đổi
+            var qty = $(this).parent().find('.num-product').val();
+
+            //Gửi thông tin về updateCart để xử lý trên SESSION
+            $.post("../controllers/updateCart.php",{'pCode': pCode, 'qty':qty}, function(data){
+                // Load lại  hiển thị sản phẩm có trong giỏ
+                //$("#loadListCart").load("shopping-cart.php #loadListCart");
+            });
+        });
+        //Tăng số lượng
+        $('.btn-num-product-up').on('click', function(){
+
+            var numProduct = Number($(this).prev().val());
+
+            $(this).prev().val(numProduct + 1);
+
+            var pCode = $(this).parent().find('.num-product').attr('id');
+
+            var qty = $(this).parent().find('.num-product').val();
+
+            $.post("../controllers/updateCart.php",{'pCode': pCode , 'qty':qty}, function(data){
+
+               // $("#loadListCart").load("shopping-cart.php #loadListCart");
+            });
+        });
+    });
     /*==================================================================
     [ Rating ]*/
     $('.wrap-rating').each(function(){
@@ -280,3 +309,4 @@
 
 
 })(jQuery);
+    

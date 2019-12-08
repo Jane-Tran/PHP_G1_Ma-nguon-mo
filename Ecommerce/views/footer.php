@@ -310,7 +310,7 @@
 
 
 	<!--=======================================Javascript Dùng chung========================================================-->
-	<script src="../public/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="../public/vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
@@ -387,9 +387,15 @@
 		/*---------------------------------------------*/
 
 		$('.js-addcart-detail').each(function() {
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var pName = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+			var pCode = $(this).parent().parent().parent().parent().find('.js-name-detail').attr('id');
 			$(this).on('click', function() {
-				swal(nameProduct, "is added to cart !", "success");
+				swal(pName, "is added to cart ! "+pCode, "success");
+				$.post("../controllers/addToCart.php",{'pCode': pCode}, function(data, status){
+					item = data.split("-");
+					$("#qty").attr('data-notify',item[0]);
+					$("#nav-total").text('$ '+item[1]);
+				});
 			});
 		});
 	</script>
@@ -417,19 +423,25 @@
 	<script>
 		//Hàm gọi Ajax để hiển thị nhanh
 		function showDetail(pCode) {
-			// alert(pCode);
-			var xmlhttp = new XMLHttpRequest();
-			// xmlhttp.onreadystatechange = function() {
-			// 	if (this.readyState == 4 && this.status == 200) {
-			// 		document.getElementById("modal-detail").innerHTML = this.responseText;
-			// 	}
-			// }
-			xmlhttp.open("GET", "../controllers/quickView.php?pCode=" + pCode, true);
-			xmlhttp.send();
+        // alert(pCode);
+        var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.onreadystatechange = function() {
+        // 	if (this.readyState == 4 && this.status == 200) {
+        // 		document.getElementById("modal-detail").innerHTML = this.responseText;
+        // 	}
+        // }
+        xmlhttp.open("GET", "../controllers/quickView.php?pCode=" + pCode, true);
+        xmlhttp.send();
 
-			$('.js-modal1').addClass('show-modal1');
+        $('.js-modal1').addClass('show-modal1');
 		}
+		//Hàm thêm vào giỏ hàng sử dụng ajax phương thức post
+		function deleteCart() {
+			alret('hihi');
+		}
+
 	</script>
+		
 	</body>
 
 	</html>

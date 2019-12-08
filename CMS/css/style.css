@@ -229,11 +229,11 @@ section .widgets{
 .category ul li a{
     text-decoration: none;
 }
-.post{
+/* .post{
     border: 1px solid #ccc;
     
 
-}
+} 
 .post .post-date{
     padding: 5px 10px 5px 10px;
     text-align: center;
@@ -252,8 +252,8 @@ section .widgets{
 }
 .post .post-date .year{
     font-size: 18px;
-    font-weight: 100;
-}
+    font-weight: 100; 
+}*/
 footer{
     background: #2c2f38;
     height: 70px;

@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" type="image/png" href="img/duckling.png" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/animations.css" />
-    <title>Code-Life | Blog</title>
-</head>
+<?php
+include("top-blog.php");
+include("models/post.php");
+$listp = Post::GetListPostFromDB();
+?>
 
 <body>
     <header class="container">
@@ -21,8 +13,7 @@
                     <div class="col-xs-9">Code - Life</div>
                 </div>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -31,8 +22,7 @@
                         <a class="nav-link" href="#"><i class="fas fa-house-damage"></i> Home </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-file-alt"></i> Pages
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -42,8 +32,7 @@
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-list-alt"></i> Categories
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -53,7 +42,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#"><i class="fab fa-connectdevelop"></i> Contact-us</a>
+                        <a class="nav-link " href="login-blog.php"><i class="fab fa-connectdevelop"></i>Login</a>
                     </li>
                 </ul>
 
@@ -70,11 +59,9 @@
     </div>
     <section>
         <div class="container">
-            <div class="row">
+            <div class="row ">
                 <div class="col-lg-8 ">
-                    <div class="post">
-                        <div class="row">
-                            <div class="col-md-2 post-date">
+                    <!-- <div class="col-md-2 post-date">
                                 <div class="day">30</div>
                                 <div class="month">12</div>
                                 <div class="year">2019</div>
@@ -87,9 +74,25 @@
                             </div>
                             <div class="col-md-2 profile-picture">
                                 <img src="" alt="Profile Picture">
+                            </div> -->
+                    <?php
+                    foreach ($listp as $value) {
+                        ?>
+                        <div class="card promoting-card narrower   ">
+                            <img class="card-img-top" src="./upload/<?php echo $value->image ?>" alt="Card image cap">
+                            <div class="card-body">
+                                <h2 class="card-title"><?php echo $value->title ?></h2>
+                                <p class="card-text"><?php echo $value->content ?></p>
+                                <a href="#" class="btn btn-primary">Read More →</a>
+                            </div>
+                            <div class="card-footer ">
+                                Posted on January 1, 2020 by
+                                <a href="#">Huy</a>
                             </div>
                         </div>
-                    </div>
+                        <hr>
+                    <?php } ?>
+
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="widgets">
@@ -107,10 +110,12 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-4 ">
-                                    <img src="/img/popular1.jpg" alt="popular1">
+                                    <img src="./img/popular1.jpg" alt="popular1">
                                 </div>
                                 <div class="col-md-8  detail">
-                                    <a href="#"><h4>This is heading for Post</h4></a>
+                                    <a href="#">
+                                        <h4>This is heading for Post</h4>
+                                    </a>
                                     <p><i class="far fa-clock"></i> 10 May, 2020</p>
                                 </div>
                             </div>
@@ -118,10 +123,12 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="/img/popular1.jpg" alt="popular1">
+                                    <img src="./img/popular1.jpg" alt="popular1">
                                 </div>
                                 <div class="col-md-8 detail">
-                                    <a href="#"><h4>This is heading for Post</h4></a>
+                                    <a href="#">
+                                        <h4>This is heading for Post</h4>
+                                    </a>
                                     <p><i class="far fa-clock"></i> 10 May, 2020</p>
                                 </div>
                             </div>
@@ -129,10 +136,12 @@
                             <hr>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="/img/popular1.jpg" alt="popular1">
+                                    <img src="./img/popular1.jpg" alt="popular1">
                                 </div>
                                 <div class="col-md-8 detail">
-                                    <a href="#"><h4>This is heading for Post</h4></a>
+                                    <a href="#">
+                                        <h4>This is heading for Post</h4>
+                                    </a>
                                     <p><i class="far fa-clock"></i> 10 May, 2020</p>
                                 </div>
                             </div>
@@ -143,50 +152,39 @@
                             <hr>
                             <div class="card-body">
                                 <div class="row">
-                                  <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                      <li>
-                                        <a href="#">Web Design</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">HTML</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">Freebies</a>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                  <div class="col-lg-6">
-                                    <ul class="list-unstyled mb-0">
-                                      <li>
-                                        <a href="#">JavaScript</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">CSS</a>
-                                      </li>
-                                      <li>
-                                        <a href="#">Tutorials</a>
-                                      </li>
-                                    </ul>
-                                  </div>
+                                    <div class="col-lg-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li>
+                                                <a href="#">Web Design</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">HTML</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Freebies</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li>
+                                                <a href="#">JavaScript</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">CSS</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Tutorials</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                              </div>
+                            </div>
                         </div>
                     </div><!-- End widgets-->
-                    
+
                 </div>
             </div>
         </div>
     </section>
-    <footer>
-        <div class="container">
-            Copyright &copy; by HuyTran. All Right Reserved form Now
-        </div>
-    </footer>
-    <script src="https://kit.fontawesome.com/8606a95fee.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-
-</html>
+    <?php include("footer-blog.php") ?>
