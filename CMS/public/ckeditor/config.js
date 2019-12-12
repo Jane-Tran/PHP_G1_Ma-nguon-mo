@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// https://ckeditor.com/docs/ckeditor4/latest/api/CKEDITOR_config.html
-
+	config.skin='v2'; 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -36,7 +36,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
-	config.filebrowserBrowseUrl = 'http://http://admin:8008/PHP_G1_Ma-nguon-mo/CMS/public/ckfinder/ckfinder.html';
+	config.filebrowserBrowseUrl = 'http://http://admin:8008/PHP_G1_Ma-nguon-mo/CMS/media.php';
  
 	config.filebrowserImageBrowseUrl = 'http://admin:8008/PHP_G1_Ma-nguon-mo/CMS/public/ckfinder/ckfinder.html?type=Images';
  

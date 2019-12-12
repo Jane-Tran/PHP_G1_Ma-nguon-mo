@@ -4,8 +4,6 @@
  */
 
 var config = {};
-var editor = CKEDITOR.replace( 'ckfinder' );
-CKFinder.setupCKEditor( editor );
 
 // Set your configuration options below.
 

@@ -31,7 +31,7 @@ class Users
     static function authentication($email, $pw)
     {
         $con = Users::connect();
-        $sql = "SELECT * FROM users WHERE email='$email' AND password='$pw'";
+        $sql = "SELECT * FROM users WHERE email='$email' AND `password`='$pw'";
         $result = $con->query($sql);
         if ($result->num_rows >= 1) {
             $row = $result->fetch_assoc();
@@ -46,5 +46,36 @@ class Users
             return $u;
         }
         $con->close();
+    }
+
+    //Hàm thêm tài khoản người dùng
+    static function NewUser( $firstName, $lastName, $email, $password)
+    {
+        $con = Users::connect();
+        $sql = "INSERT INTO users(firstName, lastName, email, `password`, `admin`)  
+                VALUES ( '$firstName', '$lastName', '$email', '$password','0')";
+        $con->query($sql) or die("Truy vấn lỗi :(");
+        $con->close();
+    }
+    static function GetListUserFromDBByAdmin()
+    {
+        $con = Users::connect();
+        $sql = "SELECT * FROM users ";
+        $result = $con->query($sql);
+        $listu = array();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                array_push($listu, new Users(
+                    $row["idUser"],
+                    $row["fisrtName"],
+                    $row["lastName"],
+                    $row["email"],
+                    $row["password"],
+                    $row["admin"]
+                ));
+            }
+        $con->close();
+        return $listu;
+        }
     }
 }

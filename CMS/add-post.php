@@ -59,8 +59,9 @@ if(isset($_GET["editPost"] )){
                                         value="<?php echo isset($epost)? $epost->title :"" ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label>Image :</label>
-                                        <input type="file" class="btn btn-warning" name="fimage" required value="<?php echo isset($epost)? $epost->image :"" ?>">
+                                        <label>Image : <?php echo isset($epost)? $epost->image :"" ?></label>
+                                        <input type="file"  class="btn btn-warning" name="fimage"  value="Chọn Ảnh tải lên">
+                                        <!-- <input type="text" name="" id="ckfinder-input-1"> -->
                                     </div>
                                     <div class="form-group">
                                         <label>Post Content</label>

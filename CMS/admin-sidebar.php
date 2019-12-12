@@ -14,7 +14,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="index.php">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Dashboard</span></a>
         </li>
@@ -68,9 +68,15 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Tác cụ có thể :</h6>
                     <a class="collapse-item" href="404.html">Thêm user</a>
-                    <a class="collapse-item" href="blank.html">Xem danh sách use</a>
+                    <a class="collapse-item" href="table-users.php">Xem danh sách use</a>
                 </div>
             </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="media.php" aria-controls="collapsePages">
+            <i class="fas fa-photo-video"></i>
+                <span>Media</span>
+            </a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">

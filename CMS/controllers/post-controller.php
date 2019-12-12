@@ -12,7 +12,7 @@ if (isset($_POST)) {
             $fsize = $_FILES["fimage"]["size"];
             $ftype = $_FILES['image']['type'];
             $fext = strtolower(end(explode('.', $_FILES['fimage']['name'])));
-            $path = "../upload/";
+            $path = "../upload/images/";
             $expensions = array("jpeg", "jpg", "png");
 
             if (in_array($fext, $expensions) === false) {

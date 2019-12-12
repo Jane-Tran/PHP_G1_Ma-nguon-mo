@@ -1,7 +1,14 @@
 <?php
+
+use function PHPSTORM_META\type;
+
+session_start();
 include("top-blog.php");
 include("models/post.php");
 $listp = Post::GetListPostFromDB();
+// unset($_SESSION["user"]);
+// die();
+//var_dump($_SESSION["user"]->email);
 ?>
 
 <body>
@@ -41,9 +48,21 @@ $listp = Post::GetListPostFromDB();
                             <a class="dropdown-item" href="#">Category 2</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="login-blog.php"><i class="fab fa-connectdevelop"></i>Login</a>
-                    </li>
+                    <?php if (isset($_SESSION["user"])) {
+                        ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i> <?php echo strtoupper($_SESSION["user"] )?>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="logout-blog.php">Logout</a>
+                            </div>
+                        </li>
+                    <?php }else { ?>
+                        <li class="nav-item">
+                            <a class="nav-link " href="login-blog.php"><i class="fab fa-connectdevelop"></i>Login</a>
+                        </li>
+                    <?php } ?>
                 </ul>
 
             </div>
@@ -76,23 +95,24 @@ $listp = Post::GetListPostFromDB();
                                 <img src="" alt="Profile Picture">
                             </div> -->
                     <?php
-                    if($listp!=null){
+                    if ($listp != null) {
                         foreach ($listp as $value) {
-                        ?>
-                        <div class="card promoting-card narrower   ">
-                            <img class="card-img-top" src="./upload/<?php echo $value->image ?>" alt="Card image cap">
-                            <div class="card-body">
-                                <h2 class="card-title"><?php echo $value->title ?></h2>
-                                <p class="card-text"><?php echo $value->content ?></p>
-                                <a href="#" class="btn btn-primary">Read More →</a>
+                            ?>
+                            <div class="card promoting-card narrower   ">
+                                <img class="card-img-top" src="./upload/images/<?php echo $value->image ?>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h2 class="card-title"><?php echo $value->title ?></h2>
+                                    <p class="card-text"><?php echo $value->content ?></p>
+                                    <a href="#" class="btn btn-primary">Read More →</a>
+                                </div>
+                                <div class="card-footer ">
+                                    Posted on January 1, 2020 by
+                                    <a href="#">Huy</a>
+                                </div>
                             </div>
-                            <div class="card-footer ">
-                                Posted on January 1, 2020 by
-                                <a href="#">Huy</a>
-                            </div>
-                        </div>
-                        <hr>
-                    <?php } }?>
+                            <hr>
+                    <?php }
+                    } ?>
 
                 </div>
                 <div class="col-lg-4 col-md-12">
@@ -109,22 +129,23 @@ $listp = Post::GetListPostFromDB();
                         <div class="popular">
                             <h4>Popular Post</h4>
                             <hr>
-                           <?php if($listp!=null){
+                            <?php if ($listp != null) {
                                 foreach ($listp as $value) {
-                                ?>
-                                <div class="row">
-                                    <div class="col-md-4 ">
-                                        <img src="./upload/<?php echo $value->image ?>" alt="popular1">
+                                    ?>
+                                    <div class="row">
+                                        <div class="col-md-4 ">
+                                            <img src="./upload/images/<?php echo $value->image ?>" alt="popular1">
+                                        </div>
+                                        <div class="col-md-8  detail">
+                                            <a href="#">
+                                                <h4><?php echo $value->title ?></h4>
+                                            </a>
+                                            <p><i class="far fa-clock"></i> 10 May, 2020</p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-8  detail">
-                                        <a href="#">
-                                            <h4><?php echo $value->title ?></h4>
-                                        </a>
-                                        <p><i class="far fa-clock"></i> 10 May, 2020</p>
-                                    </div>
-                                </div>
-                                <hr>
-                            <?php } }?>
+                                    <hr>
+                            <?php }
+                            } ?>
 
                         </div>
 

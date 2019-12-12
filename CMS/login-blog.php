@@ -5,11 +5,13 @@ if(isset($_POST["login"])){
   $email = $_POST["email"];
   $pw = $_POST["password"];
   $u = Users::authentication($email,$pw);
-  var_dump($u);
-  echo "<pre>";
-  print_r($u);
-  echo "</pre>";
-  die();
+  $_SESSION["user"] = $u->firstName;
+  // var_dump($u);
+  // echo "<pre>";
+  // print_r($u);
+  // echo "</pre>";
+  // die();
+  header("location:index.php");
 }
 ?>
 
