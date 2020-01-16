@@ -97,8 +97,8 @@ $listDUH = DotUngHo::getAllDUH();
 						<tr>
 							<td>
 								<span class="custom-checkbox">
-									<input type="checkbox" id="checkbox1" name="options[]" value="1">
-									<label for="checkbox1"></label>
+									<input type="checkbox" id="checkboxitem" name="options[]" value="<?php echo $value->MaDotUngHo ?>">
+									<label for="checkboxitem"></label>
 								</span>
 							</td>
 							<td> <?php echo $value->HoTenNDD ?> </td>
@@ -118,14 +118,14 @@ $listDUH = DotUngHo::getAllDUH();
 									data-toggle="modal">
 									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 								</a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<a href="#deleteEmployeeModal"  class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
 					<?php } ?>
 				</tbody>
 			</table>
 			<div class="col-sm-6">
-				<a href="#deleteEmployeeModal" class="btn btn-danger btn-sm" data-toggle="modal"><i class="material-icons">&#xE15C;</i> </a>
+				<a href="#deleteEmployeeModal"   class="btn btn-danger btn-sm" data-toggle="modal"><i class="material-icons">&#xE15C;</i> </a>
 			</div>
 		</div>
 	</div>
@@ -189,7 +189,7 @@ $listDUH = DotUngHo::getAllDUH();
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form action="Controllers/UngHoController.php" method="POST">
 				<div class="modal-header">
 					<h4 class="modal-title">Delete Employee</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -199,13 +199,25 @@ $listDUH = DotUngHo::getAllDUH();
 					<p class="text-warning"><small>This action cannot be undone.</small></p>
 				</div>
 				<div class="modal-footer">
+					<input type="hidden" id="delMultiple" name="delMultiple">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-					<input type="submit" class="btn btn-danger" value="Delete">
+					<input type="submit" name="delete" id="deleteMultiple" class="btn btn-danger" value="Delete">
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
 <?php
-include("View/scripts.php");
+include("View/scripts.php");?>
+<script>
+	$(document).ready(function(){
+		$('#deleteMultiple').click(function(){
+			var MaDUH = $('#checkboxitem:checked').map(function(){
+				return $(this).val()
+			}).get().join(',')
+			$("#delMultiple").val( MaDUH) ;
+		});
+	});	
+</script>
+<?php
 include("View/footer.php"); ?>

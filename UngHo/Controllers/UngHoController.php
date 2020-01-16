@@ -19,4 +19,11 @@ if(isset($_REQUEST["suaDotUngHo"])){
     DotUngHo::editUngHo($MaDotUngHo, $MaDVUH, $NgayUngHo, $HinhThuc,$SoLuong, $DonVi);
     header("location:../dotungho.php");
 }
+if(isset($_REQUEST["delete"])){
+    echo "<pre>";
+    echo $_POST["delMultiple"];
+    print_r( "hihi");
+    print "haha";
+    die();
+}
 

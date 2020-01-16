@@ -1,10 +1,10 @@
 $(document).ready(function(){
-	$('#DVUHTable').DataTable({
-		"ordering": false
-	});
-	$('#DUHTable').DataTable({
-		"ordering": false
-	});
+	// $('#DVUHTable').DataTable({
+	// 	"ordering": false
+	// });
+	// $('#DUHTable').DataTable({
+	// 	"ordering": false
+	// });
 	// Activate tooltip
 	$('[data-toggle="tooltip"]').tooltip();
 	
@@ -26,6 +26,8 @@ $(document).ready(function(){
 			$("#selectAll").prop("checked", false);
 		}
 	});
-
+	
 	
 });
+
+

@@ -4,9 +4,9 @@
 
 include("View/header.php");
 include_once("Models/DonViUngHo.php");
-include_once("Models/NhanUngHo.php");
+include_once("Models/ThongKe.php");
 $listMaDVUH = DonViUngHo::getAllMaDVUH();
-$listDNUH = NhanUnngHo::getAllNhanUngHo();
+$listTK = ThongKe::thongKeTienMat();
 ?>
 <div class="container-fluid ">
 	<a href="#" style="text-decoration:none;">
@@ -42,16 +42,17 @@ $listDNUH = NhanUnngHo::getAllNhanUngHo();
 								<label for="selectAll"></label>
 							</span>
 						</th>
-						<th>Mã đợt nhận ủng hộ</th>
 						<th>Mã hộ dân</th>
-						<th>Ngày giờ nhận ủng hộ</th>
-						<th>Hình thức nhận ủng hộ</th>
-						<th>Số lượng nhận ủng hộ</th>
+						<th>Họ tên chủ hộ </th>
+						<th>Tổ hoặc thôn</th>
+						<th>Khối hoặc đội</th>
+						<th>Là hộ nghèo</th>
+						<th>Tổng số tiền mặt</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach ($listDNUH as $key => $value) { ?>
+					<?php foreach ($listTK as $key => $value) { ?>
 						<tr>
 							<td>
 								<span class="custom-checkbox">
@@ -59,11 +60,12 @@ $listDNUH = NhanUnngHo::getAllNhanUngHo();
 									<label for="checkbox1"></label>
 								</span>
 							</td>
-							<td> <?php echo $value->MaDotNhanUngHo ?> </td>
-							<td><?php echo $value->MaHoDan ?> </td>
-							<td><?php echo $value->NgayNhanUngHo ?> </td>
-							<td><?php echo $value->HinhThucNhanUngHo ?> </td>
-							<td><?php echo $value->SoLuongNhanUngHo ?> </td>
+							<td> <?php echo $value->MaHoDan ?> </td>
+							<td><?php echo $value->HoTenChuHo ?> </td>
+							<td><?php echo $value->To ?> </td>
+							<td><?php echo $value->Khoi ?> </td>
+							<td><?php echo $value->LaHoNgheo ?> </td>
+							<td><?php echo $value->TongTien ?> </td>
 
 							<td>
 								<a href="#editEmployeeModal" class="edit"
@@ -71,7 +73,7 @@ $listDNUH = NhanUnngHo::getAllNhanUngHo();
 									<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 								</a>
                                 <a href="#deleteEmployeeModal" class="delete" 
-                                    onclick="DeleteDNUH('<?php echo $value->MaDotNhanUngHo ?>')"
+                                    
                                     data-toggle="modal">
                                     <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                                 </a>

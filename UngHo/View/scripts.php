@@ -5,6 +5,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" ></script>
 <script src="assets/datatables/jquery.dataTables.js"></script>
 <script src="assets/datatables/dataTables.bootstrap4.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
 <script>
     // Hàm sửa đợt ủng hộ
@@ -21,5 +22,12 @@
     function DeleteDNUH(manhan){
         document.getElementById("delMaDotNhanUngHo").value = manhan;
     }
-
+    function delCC(manhan){
+        document.getElementById("delMaDotNhanUngHo").value = manhan;
+    }
+    function edCC(manhan, Tencc){
+        document.getElementById("eTenCC").value = Tencc;
+        document.getElementById("eMaCC").value = manhan;
+    }
+    
 </script>
